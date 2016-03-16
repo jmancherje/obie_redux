@@ -32,7 +32,7 @@ class NavBar2 extends Component {
 // gives props to this container
 const mapStateToProps = (state) => {
   return {
-    counters: state.context.counters,
+    counters: state.content.counters,
     ui: state.ui
   }
 }
