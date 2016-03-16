@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Obie Landlord Registration</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
+  <style>
+    body {
+      background-color: #F5F8FA;
+    }
+    .registration-form {
+      border: 1px solid #E1E8ED;
+      border-radius: 5px;
+      margin-top: 100px;
+      padding: 20px;
+      background-color: white;
+    }
+    .wide-button {
+      width: 100%;
+    }
+    #join-house-btn, #create-house-btn {
+      margin-top: 10px;
+    }
+    #join-house-div {
+      display: none;
+    }
+    .join-house-alert {
+      display: none;
+    }
+    .routing-button {
+      width: 49%;
+      display: inline-block;
+      height: 100px;
+      font-size: 1.5em;
+      font-weight: 300;
+    }
+    .left-btn {
+      float: left;
+    }
+    .right-btn {
+      float: right;
+    }
+  </style>
+</head>
+<body>
+    
+    <div id="create-house-div" class="registration-form col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
+      <h3 class="text-center">Add a new property</h3>
+      <hr>
+      <form id="create-house-form">
+        <div class="form-group">
+          <label for="house-name">Give your property a name:</label>
+          <input type="text" class="form-control" id="house-name" placeholder="2B Grand" required>
+          <label for="house-address">Property Address:</label>
+          <input type="text" class="form-control" id="house-address" placeholder="1440 Grand Ave Apt 2B, San Francisco, CA" required>
+        </div>
+        <button class="btn btn-info wide-button" id="create-house-submit">Create new Property!</button>
+      </form>
+        <button class="btn btn-success wide-button" id="join-house-btn">Or Manage Existing Property</button>
+    </div>
+
+    <div id="join-house-div" class="registration-form col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
+      <h3 class="text-center">Manage existing property</h3>
+      <hr>
+      <form id="join-house-form">
+        <div class="form-group">
+          <div class="alert alert-success join-house-alert">
+            <strong>Success!</strong> Share this code with your tenants and click below to begin managing your property!
+          </div>
+          <div class="alert alert-info join-house-info">
+            <strong>Welcome!</strong> If your tenants are already using the app, enter their property code here to begin managing your property!
+          </div>
+          <label for="house-code">Property Code:</label>
+          <input type="text" class="form-control" id="house-code" placeholder="ex: BZ3JFS1T4EP" min-length='11' max-length='11'>
+        </div>
+        <button class="btn btn-info wide-button" id="join-house-submit">Begin Managing Property!</button>
+        <button class="btn btn-success wide-button" id="create-house-btn">Or Add a new Property</button>
+      </form>
+    </div>
+  <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/jquery.validate.min.js"></script>
+  <script src="./landlordRegistration.js"></script>
+</body>
+</html>

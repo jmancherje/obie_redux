@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Obie</title>
+</head>
+  <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+  <script>
+
+    var redirect = function() {
+      $.ajax({
+        url: '/direct',
+        type: 'GET',
+        headers: {token: localStorage.getItem('obie')},
+        contentType: 'application/json',
+        success: function(route) {
+          window.location.href = '/' + route;
+        },
+        error: function() {
+          console.log('error redirecting');
+        }
+      })
+    };
+
+    // if token in local storage
+    if (localStorage.getItem('obie')) {
+      // update session on server using current local storage
+      $.ajax({
+        url: '/obie/update',
+        type: 'GET',
+        headers: {token: localStorage.getItem('obie')},
+        contentType: 'application/json',
+        success: function(token) {
+          localStorage.setItem('obie', token)
+          redirect();
+        },
+        error: function() {
+          console.log('error getting session');
+        }
+      })
+    } else {
+      // get session on server
+      $.ajax({
+        url: '/obie/',
+        type: 'GET',
+        contentType: 'application/json',
+        success: function(session) {
+          // replacing good token with an empty session.
+          localStorage.setItem('obie', session);
+          redirect();
+          // should redirect here IF already have a valid token
+        },
+        error: function() {
+          console.log('error getting session');
+        }
+      });
+    }
+  </script>
+
+<body>
+  
+</body>
+</html>
