@@ -1,7 +1,7 @@
 {
   "name": "obie redux",
   "version": "1.0.0",
-  "description": "An app for roommates",
+  "description": "An app for roommates and landlords",
   "main": "gulpfile.js",
   "scripts": {
     "test": "mocha",
@@ -9,12 +9,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bashfulbanana/bashfulbanana.git"
+    "url": "git+https://github.com/jmancherje/obie_redux.git"
+
   },
   "author": "Justin, Nick, Joey, Lyly",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/bashfulbanana/bashfulbanana/issues"
+    "url": "https://github.com/jmancherje/obie_redux/issues"
   },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
@@ -70,5 +71,5 @@
     "vinyl-source-stream": "1.1.0",
     "watchify": "3.4.0"
   },
-  "homepage": "https://github.com/bashfulbanana/bashfulbanana#readme"
+  "homepage": "https://github.com/jmancherje/obie_redux/#readme"
 }
