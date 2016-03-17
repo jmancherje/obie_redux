@@ -8,3 +8,10 @@ export const changeView = (view) => {
     payload: viewsObject[view]
   }
 }
+
+export const incrementCount = (view) => {
+  return {
+    type: 'INCREMENT_COUNTER',
+    payload: viewsObject[view].render
+  }
+}

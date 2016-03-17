@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
-import uiReducer from './ui_reducer'
+import { uiReducer as ui } from './ui_reducer'
+import { counterReducer as counters } from './counter_reducer'
 
 const content = (state, action) => {
   return {
@@ -9,18 +10,14 @@ const content = (state, action) => {
       bills: []
     },
     landlordMessages: [],
-    messages: [],
-    counters: {
-      messages: 4,
-      chores: 1,
-      contact_landlord: 7,
-      finances: 5
-    }
+    messages: []
   }
 }
 
+
 const rootReducer = combineReducers({
-  ui: uiReducer,
+  ui,
+  counters,
   content
 });
 

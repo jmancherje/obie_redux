@@ -11,7 +11,7 @@ const INITIAL_STATE = {
 }
 
 // set ui properties on state
-const uiReducer = (state = INITIAL_STATE, action) => {
+export const uiReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case 'CHANGE_VIEW':
       return Object.assign({}, state, {
@@ -22,4 +22,3 @@ const uiReducer = (state = INITIAL_STATE, action) => {
   }
 }
 
-export default uiReducer

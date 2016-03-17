@@ -7,19 +7,13 @@ const NavLink = ({
   key,
   count
 }) => (
-  <li 
-    className="inner-flex"
-    >
+  <li className="inner-flex">
     <a 
       onClick={onClick} 
-      style={{
-        fontWeight: currentView.text === text ? 'bold' : 'normal'
-      }}
-      >
+      style={{ fontWeight: currentView.text === text ? 'bold' : 'normal' }}
+    >
       {text}
-      <span className="notification-count">
-        {count}
-      </span>
+      { count > 0 ? <span className="notification-count">{count}</span> : '' }
     </a>
   </li>
 )
