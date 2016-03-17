@@ -7,13 +7,13 @@ import { createHistory } from 'history';
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import NavBar2 from './containers/Navbar'
+import SideBar2 from './containers/SideBar'
 import ContentContainer2 from './containers/ContentContainer'
 import rootReducer from './reducers/index'
 
 const store = createStore(rootReducer)
 // views constants
 import views from './components/config/views'
-
 
 import NavBar from './components/navbarComponent'
 // tenant components
@@ -73,6 +73,7 @@ var App = React.createClass({
       success: function(users) {
         this.state.users = users; 
         this.setState({users: this.state.users}); 
+        console.log(users);
       }.bind(this)
     });
   },
@@ -85,6 +86,7 @@ var App = React.createClass({
       headers: {'token': localStorage.getItem('obie')},
       success: function(url) {
         this.state.imageUrl = url[0].userImageUrl || "https://s-media-cache-ak0.pinimg.com/736x/fb/e1/cd/fbe1cdbc1b728fbb5e157375905d576f.jpg";
+        console.log(url[0].userImageUrl)
         this.state.name = url[0].name;
         this.state.id = url[0].id;
         this.setState({imageUrl: this.state.imageUrl, name: this.state.name});
@@ -181,21 +183,7 @@ var App = React.createClass({
       <div>
         <NavBar2 store={store} />
         <div className="app-container col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-          <div className="col-xs-5 col-md-4 col-lg-4 side-bar-container">
-            <div className="side-bar-filler">
-              <ImageContainer imageUrl={this.state.imageUrl}  />
-              <div>
-                <h3 className="text-center">{this.state.houseName}</h3>
-                <h4>Roommates:</h4>
-                <ul className="sidebar-roommate-ul">{roommates}</ul>
-                <button className="btn btn-info submit-message-button text-center" onClick={this.toggleHouseCode}>Invite Roommates</button>
-                <div className="toggle-house-code">
-                  <p>Share this house code with your roommates</p>
-                  <p className="house-code">{this.state.houseCode}</p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <SideBar2 store={store} />
           <div className="col-xs-7 col-md-8 col-lg-8 interface-container main-bar-container">
             <ContentContainer2 store={store} name={this.state.name} initialLoad={this.state.initialLoad} isLandlord={this.state.isLandlord} />
           </div>

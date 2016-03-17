@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import _ from 'underscore'
 
 // redux
 import { connect } from 'react-redux'
