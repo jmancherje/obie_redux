@@ -13,7 +13,7 @@ const NavLink = ({
       style={{ fontWeight: currentView.text === text ? 'bold' : 'normal' }}
     >
       {text}
-      { count > 0 ? <span className="notification-count">{count}</span> : '' }
+      { count > 0 && currentView.text !== text ? <span className="notification-count">{count}</span> : '' }
     </a>
   </li>
 )
