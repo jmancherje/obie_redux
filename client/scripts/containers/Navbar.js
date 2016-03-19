@@ -9,7 +9,7 @@ import { viewsArray } from '../components/config/views'
 // navbar component:
 import NavMenu from '../components/navbar/NavMenu'
 
-class NavBar2 extends Component {
+class NavBar extends Component {
   render() {
     return (
       <nav className="navbar navbar-default">
@@ -41,4 +41,5 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ changeView }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavBar2)
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar)
+

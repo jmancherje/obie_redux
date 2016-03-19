@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-class SideBar2 extends Component {
+class SideBar extends Component {
   componentWillMount() {
 
   }
@@ -56,4 +56,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(SideBar2)
+export default connect(mapStateToProps)(SideBar)

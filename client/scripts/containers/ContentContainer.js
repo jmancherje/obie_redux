@@ -6,7 +6,7 @@ import ChoreContainer from '../components/choreComponent'
 import FinanceContainer from '../components/financeComponent'
 import LandlordMessageContainer from '../components/messageLandlordComponent'
 
-class ContentContainer2 extends Component {
+class ContentContainer extends Component {
   render() {
     console.log(this.props)
     if (this.props.view === 'messages') {
@@ -27,4 +27,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(ContentContainer2)
+export default connect(mapStateToProps)(ContentContainer)

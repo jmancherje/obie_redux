@@ -7,15 +7,15 @@ import { createHistory } from 'history';
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import NavBar2 from './containers/Navbar'
-import SideBar2 from './containers/SideBar'
-import ContentContainer2 from './containers/ContentContainer'
+import SideBar from './containers/SideBar'
+import ContentContainer from './containers/ContentContainer'
 import rootReducer from './reducers/index'
 
 const store = createStore(rootReducer)
 // views constants
 import views from './components/config/views'
 
-import NavBar from './components/navbarComponent'
+// import NavBar from './components/navbarComponent'
 // tenant components
 import MessageContainer from './components/messageComponent'
 import ChoreContainer from './components/choreComponent'
@@ -37,7 +37,7 @@ navbar.landlordLinks = [
   {render: "Info", text: "House Info"}
 ]
 
-var App = React.createClass({
+export var App = React.createClass({
   getInitialState: function() {
     return {
       view: 'Finances',
@@ -181,11 +181,11 @@ var App = React.createClass({
         // <NavBar {...navbar} isLandlord={this.state.isLandlord} changeView={this.renderView} view={this.state.view} />
     return (
       <div>
-        <NavBar2 store={store} />
+        <NavBar store={store} />
         <div className="app-container col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-          <SideBar2 store={store} />
+          <SideBar store={store} />
           <div className="col-xs-7 col-md-8 col-lg-8 interface-container main-bar-container">
-            <ContentContainer2 store={store} name={this.state.name} initialLoad={this.state.initialLoad} isLandlord={this.state.isLandlord} />
+            <ContentContainer store={store} name={this.state.name} initialLoad={this.state.initialLoad} isLandlord={this.state.isLandlord} />
           </div>
         </div>
       </div>
@@ -213,25 +213,25 @@ var ImageContainer = React.createClass({
   }
 });
 
-var ContentContainer = React.createClass({
-  render: function() {
-    if (this.props.view === 'Pending Bills') {
-      return <PendingBills />
-    } else if (this.props.view === 'Notify') {
-      return <Notify />
-    } else if (this.props.view === 'House Info') {
-      return <HouseInfo />
-    } else if (this.props.view === 'Messages') {
-      return <MessageContainer />
-    } else if (this.props.view === 'Chores') {
-      return <ChoreContainer name={this.props.name} />
-    } else if (this.props.view === 'Finances') {
-      return <FinanceContainer initialLoad={this.props.initialLoad} />
-    } else if (this.props.view === 'Contact Landlord') {
-      return <LandlordMessageContainer />
-    } 
-  }
-});
+// var ContentContainer = React.createClass({
+//   render: function() {
+//     if (this.props.view === 'Pending Bills') {
+//       return <PendingBills />
+//     } else if (this.props.view === 'Notify') {
+//       return <Notify />
+//     } else if (this.props.view === 'House Info') {
+//       return <HouseInfo />
+//     } else if (this.props.view === 'Messages') {
+//       return <MessageContainer />
+//     } else if (this.props.view === 'Chores') {
+//       return <ChoreContainer name={this.props.name} />
+//     } else if (this.props.view === 'Finances') {
+//       return <FinanceContainer initialLoad={this.props.initialLoad} />
+//     } else if (this.props.view === 'Contact Landlord') {
+//       return <LandlordMessageContainer />
+//     } 
+//   }
+// });
 
 $(".side-bar-filler").css({'height':($(".side-bar-container").height()+'px')});
 
