@@ -13,10 +13,83 @@ var passport = require('passport');
 var session = require('express-session');
 var jwt = require('jwt-simple');
 var request = require('request');
+var fs = require('fs');
 
+var multer = require('multer');
+var S3FS = require('s3fs');
+var s3fsImp1 = new S3FS('obietestbucket123', {
+  accessKeyId: process.env.AWS_ACCESS_KEY,
+  secretAccessKey: process.env.AWS_SECRET_KEY
+});
+var multiParty = require('connect-multiparty'),
+    multiPartyMiddleware = multiParty();
 
+// create bucket
+s3fsImp1.create();
 
 module.exports = function(app, express) {
+
+  app.use(multiPartyMiddleware);
+
+  app.post('/testupload', function(req, res) {
+    var files = req.files;
+    var fileUploadCount = 0;
+    var fileCount = Object.keys(req.files).length;
+    // console.log('FILES: ', files);
+    // console.log('FILE count: ', fileCount);
+    for (var file in files) {
+      (function uploadFiles(file) {
+        console.log('for loop, file: ', file);
+        var stream = fs.createReadStream(file.path);
+        s3fsImp1.writeFile(file.name, stream).then(function() {
+          console.log('uploaded file..')
+          fileUploadCount++;
+          if (fileUploadCount === fileCount) {
+            res.send('good').status(200);
+          }
+          // fs.unlink(file.path, function(err) {
+          //   if (err) {
+          //     console.error(err);
+          //     res.send(400)
+          //   }
+          //   fileUploadCount++;
+          //   console.log('send one file..')
+          //   if (fileUploadCount === fileCount) {
+          //     res.send('good post').status(200);
+          //   }
+          });
+      })(files[file])
+    }
+    // res.sendStatus(400);
+  });
+
+//   app.get('/sign_s3', function(req, res){
+//     aws.config.update({accessKeyId: AWS_ACCESS_KEY , secretAccessKey: AWS_SECRET_KEY });
+//     var s3 = new aws.S3(); 
+//     var s3_params = { 
+//         Bucket: S3_BUCKET, 
+//         Key: req.query.file_name, 
+//         Expires: 60, 
+//         ContentType: req.query.file_type, 
+//         ACL: 'public-read'
+//     }; 
+//     console.log('s3_params ', s3_params);
+//     s3.getSignedUrl('putObject', s3_params, function(err, data){ 
+//         if(err){ 
+//             console.log(err); 
+//         }
+//         else{ 
+//             var return_data = {
+//                 signed_request: data,
+//                 url: 'https://'+S3_BUCKET+'.s3.amazonaws.com/'+req.query.file_name 
+//             };
+//             console.log('return_data: ', return_data);
+//             res.write(JSON.stringify(return_data));
+//             res.end();
+//         } 
+//     });
+// });
+
 
   //mobile user
 
