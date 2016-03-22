@@ -1,5 +1,5 @@
 {
-  "name": "obie redux",
+  "name": "obie_redux",
   "version": "1.0.0",
   "description": "An app for roommates and landlords",
   "main": "gulpfile.js",
@@ -10,7 +10,6 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jmancherje/obie_redux.git"
-
   },
   "author": "Justin, Nick, Joey, Lyly",
   "license": "ISC",
@@ -18,10 +17,13 @@
     "url": "https://github.com/jmancherje/obie_redux/issues"
   },
   "dependencies": {
+    "aws-sdk": "^2.2.45",
+    "axios": "^0.9.1",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.14.2",
     "chai": "^3.5.0",
     "chai-http": "^2.0.1",
+    "connect-multiparty": "^2.0.0",
     "cookie-parser": "^1.4.0",
     "cors": "^2.7.1",
     "dotenv": "^2.0.0",
@@ -32,12 +34,15 @@
     "jquery-validation": "^1.14.0",
     "jwt-simple": "^0.4.1",
     "mocha": "^2.4.5",
+    "multer": "^1.1.0",
     "mysql": "^2.10.0",
     "passport": "^0.3.2",
     "passport-venmo": "0.0.1",
     "react-redux": "^4.4.1",
+    "react-s3-uploader": "^3.0.2",
     "redux": "^3.3.1",
     "request": "^2.67.0",
+    "s3fs": "^2.4.5",
     "sequelize": "^3.17.1",
     "socket.io": "^1.4.5",
     "supertest": "^1.1.0",
