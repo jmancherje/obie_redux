@@ -6,7 +6,7 @@ import { createHistory } from 'history';
 // redux
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
-import NavBar2 from './containers/Navbar'
+import NavBar from './containers/Navbar'
 import SideBar from './containers/SideBar'
 import ContentContainer from './containers/ContentContainer'
 import rootReducer from './reducers/index'
