@@ -15,7 +15,7 @@ var jwt = require('jwt-simple');
 var request = require('request');
 var fs = require('fs');
 
-var multer = require('multer');
+// var multer = require('multer');
 var S3FS = require('s3fs');
 var s3fsImp1 = new S3FS('obietestbucket123', {
   accessKeyId: process.env.AWS_ACCESS_KEY,
@@ -35,14 +35,10 @@ module.exports = function(app, express) {
     var files = req.files;
     var fileUploadCount = 0;
     var fileCount = Object.keys(req.files).length;
-    // console.log('FILES: ', files);
-    // console.log('FILE count: ', fileCount);
     for (var file in files) {
       (function uploadFiles(file) {
-        console.log('for loop, file: ', file);
         var stream = fs.createReadStream(file.path);
         s3fsImp1.writeFile(file.name, stream).then(function() {
-          console.log('uploaded file..')
           fileUploadCount++;
           if (fileUploadCount === fileCount) {
             res.send('good').status(200);
