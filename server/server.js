@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var app = express();
 var db = require('./db/index');
 var cors = require('cors');
+
 var user = require('./controllers/userController');
 
 var jwt = require('jwt-simple');
@@ -46,12 +47,14 @@ io.sockets.on('connection', function(socket){
   });
 })
 
+
 app.use(bodyParser.json());
 app.use('/', express.static(path.join(__dirname, 'client')));
 app.use(cors());
 
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 passport.serializeUser(function(user, done) {
   done(null, user);
