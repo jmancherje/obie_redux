@@ -1,16 +1,48 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import ReactS3Uploader from 'react-s3-uploader'
+import axios from 'axios'
+import AWS from 'aws-sdk'
+import $ from 'jquery'
+import _ from 'underscore'
+axios.defaults.headers.common['obie'] = localStorage.getItem('obie');
+
+AWS.config.update({accessKeyId: 'AKIAJPE64XRMRH3U3RXQ', secretAccessKey: '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', region: 'us-west-1'});
 
 class SideBar extends Component {
-  componentWillMount() {
-
+  constructor(props) {
+    super(props)
+    this.uploadImage = this.uploadImage.bind(this)
+    this.mdn_upload = this.mdn_upload.bind(this)
   }
+
   toggleHouseCode() {
     $('.toggle-house-code').toggle('slow')
   }
 
+  uploadFiles(event) {
+    var files = event.target.files;
+    var data = new FormData();
+    _.each(files, function(file, i) {
+      data.append('file-'+i, file);
+    })
+    $.ajax({
+      url: '/testupload',
+      data: data,
+      cache: false,
+      contentType: false,
+      processData: false,
+      type: 'POST',
+      success: function(data){
+        console.log(data);
+      },
+      error: function(err) {
+        console.log('error: ', err);
+      }
+    });
+  }
+
   render() {
-    console.log(this.props)
     return (
       <aside className="col-xs-5 col-md-4 col-lg-4 side-bar-container">
         <div className="side-bar-filler">
@@ -32,6 +64,12 @@ class SideBar extends Component {
                 </li>
               )}
             </ul>
+
+            <p>Select image for upload:</p>
+            <input type="file" id="image_input" multiple onChange={event => this.uploadFiles(event)} />
+            <button id="upload-button">upload</button>
+            <p id="results">any news?</p>
+
             <button className="btn btn-info submit-message-button text-center" onClick={this.toggleHouseCode}>
               Invite Roommates
             </button>
